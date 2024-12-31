@@ -1,5 +1,6 @@
 #yahakovi = 1, zeidal = 2
 cycler_type=1
+initial_variable=1
 
 def is_diagonally_dominant(matrix):
     for rindex, row in enumerate(matrix):
@@ -24,7 +25,20 @@ def zeidal(matrix,sum_vector,variable_vector):
     #stub
 
 def cycler(matrix,sum_vector,variable_vector,cycle,maxcycle):
-    return
+    variable_vector=map(lambda x: initial_variable, sum_vector)
+    for i in range(1,maxcycle):
+        variable_archive=copy.deepcopy(variable_vector)
+        if (cycler_type == 1):
+            yahakovi(matrix,sum_vector,variable_vector)
+        else:
+            zeidal(matrix,sum_vector,variable_vector)
+        flag=true
+        for index in range(len(variable_vector)):
+            flag=flag and abs(variable_vector[index] - variable_archive[index]) <= 0.000001
+        if (flag):
+            return variable_vector, true
+    return [], false
+            
     #stub
 
 def main():
